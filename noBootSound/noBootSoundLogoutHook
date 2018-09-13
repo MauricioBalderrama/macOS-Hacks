@@ -1,0 +1,10 @@
+#!/bin/bash
+
+logoutvolume="/Library/LogHook/noBootSoundLogoutVolume"
+
+# Store the state of volume
+osascript -e 'output muted of (get volume settings)' > "$logoutvolume"
+read val < "$logoutvolume"
+
+# Mute volume, so that no sound will be played at boot
+osascript -e 'set volume with output muted'

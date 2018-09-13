@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Read current state (determine wether computer was muted)
+logoutvolume="/Library/LogHook/noBootSoundLogoutVolume"
+read val < "$logoutvolume"
+
+# Restoring volume
+osascript -e "if not $val then set volume without output muted"
