@@ -150,8 +150,9 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 
 
 
-
-
+###############################################################################
+# Untested on High Sierra                                                     #
+###############################################################################
 
 # Disable automatic capitalization
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
