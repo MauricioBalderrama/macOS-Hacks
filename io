@@ -31,35 +31,34 @@ defaults write NSGlobalDomain InitialKeyRepeat -int 10
 # (not good if you require special chars [non-english])
 #defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
+#########
+# Untested
+#########
 
+# # Increase sound quality for Bluetooth headphones/headsets
+# defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
+# # Trackpad: map bottom right corner to right-click
+# # dont seem to work
+# # defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+# # defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+# # defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
+# # defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
 
+# # Set language and text formats
+# # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
+# # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
+# #defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
+# #defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
+# #defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
+# #defaults write NSGlobalDomain AppleMetricUnits -bool true
 
-###############################################################################
-# Untested on High Sierra                                                     #
-###############################################################################
+# # Enable subpixel font rendering on non-Apple LCDs
+# # Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
+# defaults write NSGlobalDomain AppleFontSmoothing -int 1
 
-# Increase sound quality for Bluetooth headphones/headsets
-defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+# # Enable HiDPI display modes (requires restart)
+# sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 
-# Trackpad: map bottom right corner to right-click
-# dont seem to work
-# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
-# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-# defaults -currentHost write NSGlobalDomain com.apple.trackpad.trackpadCornerClickBehavior -int 1
-# defaults -currentHost write NSGlobalDomain com.apple.trackpad.enableSecondaryClick -bool true
-
-# Set language and text formats
-# Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
-# `Inches`, `en_GB` with `en_US`, and `true` with `false`.
-#defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
-#defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
-#defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
-#defaults write NSGlobalDomain AppleMetricUnits -bool true
-
-# Enable subpixel font rendering on non-Apple LCDs
-# Reference: https://github.com/kevinSuttle/macOS-Defaults/issues/17#issuecomment-266633501
-defaults write NSGlobalDomain AppleFontSmoothing -int 1
-
-# Enable HiDPI display modes (requires restart)
-sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
+# # Auto-play videos when opened with QuickTime Player
+# defaults write com.apple.QuickTimePlayerX MGPlayMovieOnOpen -bool true

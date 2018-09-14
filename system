@@ -90,7 +90,8 @@ sudo systemsetup -settimezone "America/La_Paz" > /dev/null
 # Restart automatically if the computer freezes
 sudo systemsetup -setrestartfreeze on
 
-# Disable the sound effects on boot
+# Disable the sound effects on boot. 
+# TODO: Does not work on restart.
 source noBootSound/install.sh
 
 # Set sidebar icon size to medium
@@ -124,96 +125,70 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 # Note: Operation not permitted while System Integrity Protection is engaged
 # TODO: New solution
 
+#########
+# Untested
+#########
 
+# # Disable automatic capitalization
+# defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 
+# # Disable smart dashes
+# defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
+# # Disable automatic period substitution
+# defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
+# # Disable smart quotes
+# defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
+# # Disable auto-correct
+# defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
+# # Stop iTunes from responding to the keyboard media keys
+# launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
+# # Require password immediately after sleep or screen saver begins
+# defaults write com.apple.screensaver askForPassword -int 1
+# defaults write com.apple.screensaver askForPasswordDelay -int 0
 
+# # Set Help Viewer windows to non-floating mode
+# defaults write com.apple.helpviewer DevMode -bool true
 
+# # Disable the over-the-top focus ring animation
+# defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
 
+# # Increase window resize speed for Cocoa applications
+# defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
+# # Save to disk (not to iCloud) by default
+# defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
+# # Remove duplicates in the “Open With” menu (also see `lscleanup` alias)
+# /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
 
+# # Display ASCII control characters using caret notation in standard text views
+# # Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
+# defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
 
+# # Set computer name (as done via System Preferences → Sharing)
+# #sudo scutil --set ComputerName "0x6D746873"
+# #sudo scutil --set HostName "0x6D746873"
+# #sudo scutil --set LocalHostName "0x6D746873"
+# #sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6D746873"
 
+# # Disable Resume system-wide
+# #defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 
+# # Disable the crash reporter
+# #defaults write com.apple.CrashReporter DialogType -string "none"
 
+# # Fix for the ancient UTF-8 bug in QuickLook (https://mths.be/bbo)
+# # Commented out, as this is known to cause problems in various Adobe apps :(
+# # See https://github.com/mathiasbynens/dotfiles/issues/237
+# #echo "0x08000100:0" > ~/.CFUserTextEncoding
 
-
-
-
-
-
-
-
-
-###############################################################################
-# Untested on High Sierra                                                     #
-###############################################################################
-
-# Disable automatic capitalization
-defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
-
-# Disable smart dashes
-defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-
-# Disable automatic period substitution
-defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
-
-# Disable smart quotes
-defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-
-# Disable auto-correct
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
-
-# Stop iTunes from responding to the keyboard media keys
-launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
-
-# Require password immediately after sleep or screen saver begins
-defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
-
-# Set Help Viewer windows to non-floating mode
-defaults write com.apple.helpviewer DevMode -bool true
-
-# Disable the over-the-top focus ring animation
-defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
-
-# Increase window resize speed for Cocoa applications
-defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
-
-# Save to disk (not to iCloud) by default
-defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
-
-# Remove duplicates in the “Open With” menu (also see `lscleanup` alias)
-/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
-
-# Display ASCII control characters using caret notation in standard text views
-# Try e.g. `cd /tmp; unidecode "\x{0000}" > cc.txt; open -e cc.txt`
-defaults write NSGlobalDomain NSTextShowsControlCharacters -bool true
-
-# Set computer name (as done via System Preferences → Sharing)
-#sudo scutil --set ComputerName "0x6D746873"
-#sudo scutil --set HostName "0x6D746873"
-#sudo scutil --set LocalHostName "0x6D746873"
-#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6D746873"
-
-# Disable Resume system-wide
-#defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
-
-# Disable the crash reporter
-#defaults write com.apple.CrashReporter DialogType -string "none"
-
-# Fix for the ancient UTF-8 bug in QuickLook (https://mths.be/bbo)
-# Commented out, as this is known to cause problems in various Adobe apps :(
-# See https://github.com/mathiasbynens/dotfiles/issues/237
-#echo "0x08000100:0" > ~/.CFUserTextEncoding
-
-# Set a custom wallpaper image. `DefaultDesktop.jpg` is already a symlink, and
-# all wallpapers are in `/Library/Desktop Pictures/`. The default is `Wave.jpg`.
-#rm -rf ~/Library/Application Support/Dock/desktoppicture.db
-#sudo rm -rf /System/Library/CoreServices/DefaultDesktop.jpg
-#sudo ln -s /path/to/your/image /System/Library/CoreServices/DefaultDesktop.jpg
+# # Set a custom wallpaper image. `DefaultDesktop.jpg` is already a symlink, and
+# # all wallpapers are in `/Library/Desktop Pictures/`. The default is `Wave.jpg`.
+# #rm -rf ~/Library/Application Support/Dock/desktoppicture.db
+# #sudo rm -rf /System/Library/CoreServices/DefaultDesktop.jpg
+# #sudo ln -s /path/to/your/image /System/Library/CoreServices/DefaultDesktop.jpg

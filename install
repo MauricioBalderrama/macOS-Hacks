@@ -25,6 +25,26 @@ source coreApps.sh
 source coreApps.sh
 
 
+# move this block to different repository ############################################################################################################
+# Wipe all (default) app icons from the Dock
+# This is only really useful when setting up a new Mac, or if you don’t use
+# the Dock to launch apps.
+defaults write com.apple.dock persistent-apps -array
+# Add applications to Dock (including blank spaces)
+for app in "${dock[@]}"
+do
+    if [[ $app = space ]]; then
+    	# create blank space to dock
+        defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'
+        else
+    	# create dock element
+    	defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/$app.app/</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
+    fi
+done
+# Remove icons cache & kill Dock
+sudo find /private/var/folders/ -name com.apple.iconservices -exec rm -rf {} \;
+sudo rm -rf /Library/Caches/com.apple.iconservices.store
+killall Dock
 
 # create work folder    ##### this one dos not belong here... #######################################################################
 if [ ! -d ~/${workFolder} ]; then
