@@ -23,6 +23,6 @@ else
     git pull origin master
 fi
 
-# run
+# setup
 cd ${cloneFolder}${setupSubFolder}
 source setup
