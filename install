@@ -14,13 +14,13 @@ if [[ ! -d ${cloneFolder} ]]; then
     # clone
     echo ""
     echo "Downloading ${repositoryName}..."
-    # git clone https://github.com/${gitHubUsername}/${gitHubRepositoryName}.git ${cloneFolder}
+    git clone git@github.com:${gitHubUsername}/${gitHubRepositoryName}.git ${cloneFolder}
 else
     # update
     echo ""
     echo "Updating ${repositoryName}..."
     cd $cloneFolder
-    # git pull origin master
+    git pull origin master
 fi
 
 # update remote to use SSH
