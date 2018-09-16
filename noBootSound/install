@@ -10,7 +10,7 @@ logoutVolume="noBootSoundLogoutVolume"
 currentFolder="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Create installation folder
-mkdir -p "${installationFolder}"
+sudo mkdir -p "${installationFolder}"
 
 # Create file where the mute state is stored
 sudo printf "false" > "${installationFolder}${logoutVolume}"

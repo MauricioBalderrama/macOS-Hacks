@@ -1,13 +1,7 @@
 #!/bin/bash
 
-# variables
-declare gitHubUsername=MauricioBalderrama
-declare gitHubRepositoryName=macOS-Hacks
-declare setupSubFolder=core
-
-# settings
-declare cloneFolder=~/${gitHubRepositoryName}
-declare repositoryName="${gitHubRepositoryName//[-]/ }"  
+# libs
+. config
 
 # download repository
 if [[ ! -d ${cloneFolder} ]]; then

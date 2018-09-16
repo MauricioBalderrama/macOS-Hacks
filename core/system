@@ -91,8 +91,7 @@ sudo systemsetup -settimezone "America/La_Paz" > /dev/null
 sudo systemsetup -setrestartfreeze on
 
 # Disable the sound effects on boot. 
-# TODO: Does not work on restart.
-source noBootSound/install.sh
+source ../noBootSound/install
 
 # Set sidebar icon size to medium
 defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
