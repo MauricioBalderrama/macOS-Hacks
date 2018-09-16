@@ -1,58 +1,33 @@
 #!/bin/bash
 
-# Close any open System Preferences panes
-osascript -e 'tell application "System Preferences" to quit'
+# variables
+declare gitHubUsername=MauricioBalderrama
+declare gitHubRepositoryName=macOS-Hacks
+declare setupSubFolder=
 
-# Ask for the administrator password upfront
-sudo -v
+# settings
+declare cloneFolder=~/${gitHubRepositoryName}
+declare repositoryName="${gitHubRepositoryName//[-]/ }"  
 
-# Prevent computer from sleeping
-sudo caffeinate &
-
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-
-# Configure: system
-source system.sh
-
-# Configure: io
-source io.sh
-
-# Configure: coreApps
-source coreApps.sh
-
-# Configure: apps   ##### this one dos not belong here... #######################################################################
-source coreApps.sh
-
-
-# move this block to different repository ############################################################################################################
-# Wipe all (default) app icons from the Dock
-# This is only really useful when setting up a new Mac, or if you don’t use
-# the Dock to launch apps.
-defaults write com.apple.dock persistent-apps -array
-# Add applications to Dock (including blank spaces)
-for app in "${dock[@]}"
-do
-    if [[ $app = space ]]; then
-    	# create blank space to dock
-        defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'
-        else
-    	# create dock element
-    	defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/$app.app/</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>"
-    fi
-done
-# Remove icons cache & kill Dock
-sudo find /private/var/folders/ -name com.apple.iconservices -exec rm -rf {} \;
-sudo rm -rf /Library/Caches/com.apple.iconservices.store
-killall Dock
-
-# create work folder    ##### this one dos not belong here... #######################################################################
-if [ ! -d ~/${workFolder} ]; then
-  mkdir -p ~/${workFolder};
+# download repository
+if [[ ! -d ${cloneFolder} ]]; then
+    # clone
+    echo ""
+    echo "Downloading ${repositoryName}..."
+    # git clone https://github.com/${gitHubUsername}/${gitHubRepositoryName}.git ${cloneFolder}
+else
+    # update
+    echo ""
+    echo "Updating ${repositoryName}..."
+    cd $cloneFolder
+    # git pull origin master
 fi
 
-# Stop Caffeinate (allow computer to sleep)
-killall caffeinate
+# update remote to use SSH
+cd ${cloneFolder}
+git remote rm origin
+git remote add origin git@github.com:${gitHubUsername}/${gitHubRepositoryName}
 
-# Suggest restart
-echo "Done. Note that some of these changes require a logout/restart to take effect."
+# run
+cd ${cloneFolder}${setupSubFolder}
+source setup
