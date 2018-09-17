@@ -1,8 +1,13 @@
 #!/bin/bash
 
-# libs
-bash <(curl -L https://raw.githubusercontent.com/MauricioBalderrama/macOS-Hacks/master/config)
+# variables
+declare gitHubUsername=MauricioBalderrama
+declare gitHubRepositoryName=macOS-Hacks
 
+# settings
+declare setupSubFolder=core
+declare cloneFolder=~/${gitHubRepositoryName}
+declare repositoryName="${gitHubRepositoryName//[-]/ }"  
 echo $cloneFolder
 # download repository
 if [[ ! -d ${cloneFolder} ]]; then
