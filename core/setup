@@ -4,7 +4,7 @@
 . ../config
 
 # Start message
-echo "${repositoryName} starting..."
+echo "Starting."
 
 # Ask for the administrator password upfront
 sudo -v
@@ -25,5 +25,6 @@ source io
 source apps
 
 # Finish message
-echo "${repositoryName} completed."
+echo "Completed."
+echo ""
 echo "Some changes require a logout/restart to take effect."
