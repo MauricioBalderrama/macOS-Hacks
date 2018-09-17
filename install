@@ -2,12 +2,12 @@
 
 # libs
 . config
-
+echo $cloneFolder
 # download repository
 if [[ ! -d ${cloneFolder} ]]; then
     # clone
     echo ""
-    echo "Downloading ${repositoryName}..."
+    echo "Cloning ${repositoryName}..."
     git clone git@github.com:${gitHubUsername}/${gitHubRepositoryName}.git ${cloneFolder}
 else
     # update
