@@ -1,7 +1,17 @@
 #!/bin/bash
 
+##########
+# Mojave #
+##########
+
 # Security & Privacy: General: Allow apps downloaded from "Anywhere"
 sudo spctl --master-disable
+
+
+
+###############
+# High Sierra #
+###############
 
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
