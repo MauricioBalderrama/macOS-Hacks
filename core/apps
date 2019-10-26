@@ -51,7 +51,7 @@ defaults write com.apple.finder AppleShowAllFiles -bool true
 
 # # Set Home as the default location for new Finder windows
 defaults write com.apple.finder NewWindowTarget -string "PfLo"
-defaults write com.apple.finder NewWindowTargetPath -string "file:///${HOME}"
+defaults write com.apple.finder NewWindowTargetPath -string "file:///Volumes/Projects"
 
 
 ###############
@@ -128,7 +128,7 @@ defaults write com.apple.finder NewWindowTargetPath -string "file:///${HOME}"
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
-# Set the icon size of Dock items to 36 pixels
+# Set the icon size of Dock items to 48 pixels
 defaults write com.apple.dock tilesize -int 48
 
 # Minimize windows into their application’s icon
