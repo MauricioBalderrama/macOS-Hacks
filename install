@@ -6,7 +6,7 @@ declare gitHubRepositoryName=macOS-Hacks
 
 # settings
 declare setupSubFolder=core
-declare cloneFolder=~/${gitHubRepositoryName}
+declare cloneFolder=/Volumes/Projects/${gitHubRepositoryName}
 declare repositoryName="${gitHubRepositoryName//[-]/ }"  
 
 # download repository
