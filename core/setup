@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# libs
-. ../config
-
 # Start message
 echo "Starting."
 
