@@ -12,9 +12,6 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # Close any open System Preferences panes
 osascript -e 'tell application "System Preferences" to quit'
 
-# Configure: system
-source system
-
 # Configure: io
 source io
 
